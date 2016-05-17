@@ -1,27 +1,3 @@
-# XmppMapper
-
-XmppMapper is a small - still in dev and unstable - library for xmpp stanza parsing.
-It uses underneath the fast_xml and xmpp_codec libraries, by the awesome ejabberd team.
-
-## Why
-
-I've created this library because of my [elixible](https://github.com/gabrielgatu/elixible) project.
-From what I've seen, there is not much to choose in xmpp parser in elixir, but there are some in the erlang
-community. So I've just readapted some of this libraries to work nice with elixir and provide a nice API.
-
-## How it works
-
-It's really simple: through the `XmppMapper.Parser.parse/1` you can parse a xml stanza into an elixir struct.
-
-Most of the structs don't have functions, but the `Stanza.JID` has some utility ones.
-
-## Coverage
-
-You can see inside the `stanzas.ex` module what stanzas are supported. As soon as I have some free time I'll
-port the other stanzas as well.
-
-## License
-
 The MIT License (MIT)
 
 Copyright (c) 2016 Gabriel Gatu
