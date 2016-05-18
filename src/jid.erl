@@ -50,9 +50,13 @@
 -spec start() -> ok.
 
 start() ->
-    SplitPattern = binary:compile_pattern([<<"@">>, <<"/">>]),
-    catch ets:new(jlib, [named_table, protected, set, {keypos, 1}]),
-    ets:insert(jlib, {string_to_jid_pattern, SplitPattern}),
+    % Remove because when this lib is used is conjunction with ejabberd it throws an error
+    % because the table is already present and it cannot be written by another process.
+    % This problem has been resolved replacing the table fetching with the result itself
+    % (which is the SplitPattern). Watch line 101 for this.
+    % SplitPattern = binary:compile_pattern([<<"@">>, <<"/">>]),
+    % catch ets:new(jlib, [named_table, protected, set, {keypos, 1}]),
+    % ets:insert(jlib, {string_to_jid_pattern, SplitPattern}),
     ok.
 
 -spec make(binary(), binary(), binary()) -> jid() | error.
@@ -94,7 +98,7 @@ from_string(S) when is_list(S) ->
     %% losing associated ets table.
     {error, need_jid_as_binary};
 from_string(S) when is_binary(S) ->
-    SplitPattern = ets:lookup_element(jlib, string_to_jid_pattern, 2),
+    SplitPattern = binary:compile_pattern([<<"@">>, <<"/">>]),
     Size = size(S),
     End = Size-1,
     case binary:match(S, SplitPattern) of
