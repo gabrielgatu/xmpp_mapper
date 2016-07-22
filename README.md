@@ -1,6 +1,8 @@
 # XmppMapper
 
-XmppMapper is a small - still in dev and unstable - library for xmpp stanza parsing.
+WARNING: Project not maintained anymore. Use it only as a starting point.
+
+XmppMapper is a small - still unfinished and unstable - library for xmpp stanza parsing.
 It uses underneath the fast_xml and xmpp_codec libraries, by the awesome ejabberd team.
 
 ## Why
